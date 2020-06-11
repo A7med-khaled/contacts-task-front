@@ -1,0 +1,27 @@
+<mat-card [ngClass]="{locked: contact['editBy'] && contact['editBy'] !== currentUser}">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{contact.name}}</mat-card-title>
+        <mat-card-subtitle>{{contact.phone}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ contact.address}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{contact.notes}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions *ngIf="!contact['editBy'] || contact['editBy'] == currentUser">
+        <button mat-button (click)='deleteContact(contact._id)'>
+            <mat-icon>delete</mat-icon>
+            delete
+        </button>
+        <button mat-button (click)='openEditNewForm()'>
+            <mat-icon>edit</mat-icon>
+            edit
+        </button>
+    </mat-card-actions>
+    <mat-card-actions style="text-align: center; font-weight: bold;color: red;" *ngIf="contact['editBy'] && contact['editBy'] !== currentUser">
+        LOCkED
+    </mat-card-actions>
+
+</mat-card>

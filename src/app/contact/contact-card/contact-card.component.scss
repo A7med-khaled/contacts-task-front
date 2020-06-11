@@ -1,0 +1,17 @@
+.example-header-image {
+    background-image: url('https://img2.pngio.com/united-states-avatar-organization-information-png-512x512px-user-avatar-png-820_512.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+mat-card {
+    &.locked {
+        background: #f6d8d8;
+    }
+    background: #f1f1f1;
+    min-width: 200px;
+}
+
+mat-card-actions {
+    border-top: 1px solid;
+}

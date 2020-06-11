@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+    <span>Contacts List</span>
+    <span class="example-spacer"></span>
+    <button mat-button (click)='logout()'>
+        Logout
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="">input</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-toolbar style="background: #ccc;">
+    <input matInput [(ngModel)]="searchTxt" placeholder="Write name to search">
+    <button mat-raised-button color="primary" (click)='getContact()'>
+        Search
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-toolbar>
+
+<h3 *ngIf="listOfContact.length == 0" style="text-align: center;color:#494646;"> No Contacts exist try To add one</h3>
+
+<mat-grid-list cols="3" rowHeight="200px" *ngIf="listOfContact.length > 0">
+    <mat-grid-tile *ngFor="let contact of listOfContact">
+        <app-contact-card [contact]='contact' (deleted)="getContact()"></app-contact-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-paginator [length]="totalContactCount" [pageSize]="limitNo" [pageIndex]='pageNo' [pageSizeOptions]="[1,5, 10, 25, 100]" (page)="pageEvent = handlePage($event)">
+</mat-paginator>
+
+<button class="addNewBtn" (click)='openAddNewForm()'>
+    <mat-icon>person_add</mat-icon>
+</button>
